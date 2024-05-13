@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LED Control</title>
+    <style>
+         body {
+            background-image: url("{% static 'bg.png' %}");
+            background-color: #f0f5e0; /* Light greenish background */
+            color: #333; /* Dark grayish text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2e8b57; /* Dark greenish heading color */
+        }
+        
+        form {
+
+            background-color: #d2f5e3; /* Pale greenish form background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        label {
+            color: #006400; /* Dark greenish label color */
+            font-weight: bold;
+        }
+        
+        input[type="range"] {
+            background-color: #c8e6c9; /* Light greenish range input background */
+            border: 1px solid #2e8b57; /* Dark greenish border */
+            border-radius: 5px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        
+        button[type="submit"] {
+            background-color: #2e8b57; /* Dark greenish submit button background */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #006400; /* Dark greenish hover color */
+        }
+        
+        .value-display {
+            margin-bottom: 10px;
+            color: #2e8b57; /* Dark greenish value display color */
+        }
+    </style>
+</head>
+<body>
+    <br><br>
+    <h1>LED Control</h1>
+    <form method="post" action="{% url 'ledForm' %}">
+        {% csrf_token %}
+        <label for="red_intensity">Red Intensity:</label>
+        <input type="range" id="red_intensity" name="red_intensity" min="0" max="255" value="0">
+        <span id="red_intensity_value" class="value-display">0</span><br>
+        
+        <label for="green_intensity">Green Intensity:</label>
+        <input type="range" id="green_intensity" name="green_intensity" min="0" max="255" value="0">
+        <span id="green_intensity_value" class="value-display">0</span><br>
+        
+        <label for="blue_intensity">Blue Intensity:</label>
+        <input type="range" id="blue_intensity" name="blue_intensity" min="0" max="255" value="0">
+        <span id="blue_intensity_value" class="value-display">0</span><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Function to update the displayed value next to each slider
+        function updateValueDisplay(sliderId, valueId) {
+            var slider = document.getElementById(sliderId);
+            var valueDisplay = document.getElementById(valueId);
+            valueDisplay.textContent = slider.value;
+        }
+
+        // Attach event listeners to each slider to update their displayed values
+        document.getElementById("red_intensity").addEventListener("input", function() {
+            updateValueDisplay("red_intensity", "red_intensity_value");
+        });
+        document.getElementById("green_intensity").addEventListener("input", function() {
+            updateValueDisplay("green_intensity", "green_intensity_value");
+        });
+        document.getElementById("blue_intensity").addEventListener("input", function() {
+            updateValueDisplay("blue_intensity", "blue_intensity_value");
+        });
+
+        // Initialize the displayed values
+        updateValueDisplay("red_intensity", "red_intensity_value");
+        updateValueDisplay("green_intensity", "green_intensity_value");
+        updateValueDisplay("blue_intensity", "blue_intensity_value");
+    </script>
+</body>
+</html>

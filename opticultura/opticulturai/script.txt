@@ -1,0 +1,3 @@
+we plan to use LED technology to create a device that could manipulate light frequencies in order to boost the plant growth. This device is AI integrated to function as a Surveillance system where it constantly monitors the plant, using sensors to detect any signs of pests. When a pest is identified, the AI triggers the device to emit light at specific frequencies that have been scientifically proven to repel various pests. It also analyzes the type of plant and adjusts the light frequency accordingly. This optimization ensures that the plant receives the precise lighting conditions, maximizing photosynthesis and overall growth. 
+
+

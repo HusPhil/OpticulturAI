@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <style>
+        .main{
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: -1; 
+            width: 100vw; 
+            height: 102vh; 
+            overflow: auto;
+            margin: 0; 
+        }
+        .main img{
+            width: 100%; 
+            height: auto;
+        }
+        .logo-button {
+            position: absolute; 
+            top: .5rem; 
+            left: 2.8rem; 
+            z-index: 1; 
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            background: transparent;
+            border: none;
+        }
+        .logo-button img{
+            transition: transform 0.3s ease-in-out; /* Add transition effect */
+        }
+        .logo-button:hover img{
+            transform: scale(1.1);
+        }
+        .settings-button {
+            position: absolute; 
+            top: 12rem; 
+            left: 87rem; 
+            z-index: 1; 
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out; 
+            background: transparent;
+            border: none;
+
+        }
+        .settings-button img{
+            transition: transform 0.3s ease-in-out;
+        }
+        .settings-button:hover img{
+            transform: scale(1.1);
+        }
+        .spectrum-button {
+            position: absolute; 
+            z-index: 1; 
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            top: 32rem; 
+            left: 57rem; 
+
+        }
+        .spectrum-button img{
+            transition: transform 0.3s ease-in-out;
+        }
+        .spectrum-button:hover img{
+            transform: scale(1.1);
+        }
+        .save-button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            position: absolute;
+            top: 50rem; 
+            left: 63rem; 
+            z-index: 5; 
+        }
+        .save-button img{
+            transition: transform 0.3s ease-in-out;
+        }
+        .save-button:hover img{
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+    </header>
+
+    <nav>
+    </nav>
+
+    <main class="main">
+        <img src="{% static 'settingsSP.png' %}" alt="BG_Main">
+        <!-- Logo Button -->
+        <button id="imageButton" class="logo-button" onclick="opticulturalogo(),navigateToMainPage()">
+            <img id="logoImage" src="{% static 'opticultura.png' %}" alt="Logo Button Image">
+        </button>
+        <!-- Settings Button -->
+        <button id="settingsButton" class="settings-button" onclick="settings(),setting_button()">
+            <img id="settingsImage" src="{% static 'settings.png' %}" alt="Setting Button Image">
+        </button>
+        <!-- Spectrum Button -->
+        <button id="spectrumButton" class="spectrum-button" onclick="spectrum(),spectrum_button()">
+            <img id="spectrumImage" src="{% static 'spectrum.png' %}" alt="Spectrum Button Image">
+        </button>
+        <!-- Save Button -->
+        <button id="saveButton" class="save-button" onclick="save()">
+            <img id="saveImage" src="{% static 'save.png' %}" alt="Save Button Image">
+        </button>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script>
+
+        function opticulturalogo() {
+            var buttonImage = document.getElementById("logoImage");
+            var originalSrc = "{% static 'opticultura.png' %}";
+            var clickedSrc = "{% static 'opticultura_.png' %}";
+            
+            if (buttonImage.src.endsWith(originalSrc)) {
+                
+                buttonImage.src = clickedSrc;
+                setTimeout(function() {
+                    buttonImage.src = originalSrc;
+                }, 100);
+            }
+        }
+
+        function settings() {
+            var buttonImage = document.getElementById("settingsImage");
+            var originalSrc = "{% static 'settings.png' %}";
+            var clickedSrc = "{% static 'setting_.png' %}";
+            
+            if (buttonImage.src.endsWith(originalSrc)) {
+                
+                buttonImage.src = clickedSrc;
+                setTimeout(function() {
+                    buttonImage.src = originalSrc;
+                }, 100);
+            }
+
+        }
+
+        function spectrum() {
+            window.location.href = "{% url 'led_view' %}"; 
+            var buttonImage = document.getElementById("spectrumImage");
+            var originalSrc = "{% static 'spectrum.png' %}";
+            var clickedSrc = "{% static 'spectrum_.png' %}";
+            
+            if (buttonImage.src.endsWith(originalSrc)) {
+                
+                buttonImage.src = clickedSrc;
+                setTimeout(function() {
+                    buttonImage.src = originalSrc;
+                }, 100);
+            }
+        }
+
+        function save() {
+            var buttonImage = document.getElementById("saveImage");
+            var originalSrc = "{% static 'save.png' %}";
+            var clickedSrc = "{% static 'save_.png' %}";
+            
+            if (buttonImage.src.endsWith(originalSrc)) {
+                
+                buttonImage.src = clickedSrc;
+                setTimeout(function() {
+                    buttonImage.src = originalSrc;
+                }, 100);
+            }
+        }
+
+
+        function navigateToMainPage() {
+            window.location.href = "{% url 'home' %}"; // Navigate to discover.html
+        }        
+
+        function setting_button() {
+            window.location.href = "{% url 'discover' %}"; 
+        }
+
+
+    </script>
+</body>
+</html>

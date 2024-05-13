@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpticulturAI</title>
+    <style>
+        /* CSS for the image button */
+        .image-button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            position: absolute; /* Position the button absolutely */
+            top: 47.8rem; 
+            left: 72rem; 
+            z-index: 5; /* Ensure the button is above other content */
+        }
+
+        .image-button img {
+            transition: transform 0.3s ease-in-out; /* Add transition effect to the button image */
+        }
+
+        .image-button:hover img {
+            transform: scale(1.1); /* Scale the button image when hovered */
+        }
+
+        /* CSS for the background image container */
+        .bgbot {
+            position: fixed; /* Set the position to fixed */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            z-index: -1; /* Ensure the background is behind other content */
+            width: 100vw; /* Set the width to 100% of the viewport width */
+            height: 102vh; /* Set the height to 100% of the viewport height */
+            overflow: auto; /* Allow scrolling if the image exceeds the viewport */
+            margin: 0; /* Remove default margin */
+        }
+
+        .bgbot img {
+            width: 100%; /* Set the width to fill the container */
+            height: auto; /* Let the height adjust to maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Your header content goes here -->
+    </header>
+
+    <nav>
+        <!-- Your navigation menu goes here -->
+    </nav>
+
+    <main>
+        <!-- Your main content goes here -->
+        <div class="bgbot">
+            <img src="{% static 'START.png' %}" alt="BG_BOT">
+            <!-- "Discover" button -->
+            <button id="imageButton" class="image-button" onclick="toggleImage(),navigateToDiscoverPage()">
+                <img id="buttonImage" src="{% static 'discover.png' %}" alt="Button Image">
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Your footer content goes here -->
+    </footer>
+
+    <script>
+        // Your JavaScript code goes here
+        function toggleImage() {
+            var buttonImage = document.getElementById("buttonImage");
+            var originalSrc = "{% static 'discover.png' %}";
+            var clickedSrc = "{% static 'discover_.png' %}";
+            
+            // Check the current source of the image
+            if (buttonImage.src.endsWith(originalSrc)) {
+                // If the original image is displayed, change it to the clicked image
+                buttonImage.src = clickedSrc;
+
+                // Set a timer to revert the image back to the original state after 1 second (1000 milliseconds)
+                setTimeout(function() {
+                    buttonImage.src = originalSrc;
+                }, 100);
+            }
+        }
+
+        function navigateToDiscoverPage() {
+            window.location.href = "{% url 'discover' %}"; // Replace 'discover_page_url_name' with your actual URL name
+        }
+    </script>
+</body>
+</html>
