@@ -20,7 +20,8 @@ from opticulturai.views import opticultura_view, home_view, discover_view, setti
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', opticultura_view, name='hello_world'),
+    path('', home_view, name=''),
+    path('hello/', home_view, name='hello_world'),
     
     path('main/', home_view, name='home'),
     path('discover/', discover_view, name='discover'),
